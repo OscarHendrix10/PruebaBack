@@ -4,7 +4,7 @@ from flask.json import jsonify
 #importacion de SQLAlchemy para la conexion a la base de datos 
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from flask_cros import CORS
+from flask_cors import CORS
 
 #iniciamos la aplicacion web
 app = Flask(__name__)
@@ -88,15 +88,19 @@ def Conusltar():
     #returna un json con todos los parametros
     return jsonify(result)
 
+#metodo para buscar el registro exixtenete en la bd buscando por el id del conductor
 @app.route('/buscar/<id>', methods=['GET'])
 def buscar(id):
+    #generamos una variable para el resultado que nos arrogara el en el conductor
     conductor = Conductores.query.get(id)
     return task_schema.jsonify(conductor)
     
+#metodo para editar los registros del conductor en la base de datos
 @app.route('/editar/<id>', methods=['PUT'])
 def editar(id):
+    #amlacenamos la variable que nos trae el get.
     conductor = Conductores.query.get(id)
-    
+    #hacemos el resquest n json para insercion de datos
     nombre = request.json["nombreCompleto"],
     puesto = request.json["puesto"],
     departamento = request.json["departamento"],
@@ -114,17 +118,20 @@ def editar(id):
     conductor.fechaIngreso = fechaIngreso,
     conductor.antiguedad = antiguedad,
     conductor.ubicacion = ubicacion
-    
+    #gusrdamos los cambios 
     db.session.commit()
+    #retornamos el json modificado
     return task_schema.jsonify(conductor)
 
+#metodo para eliminar todos los registros de la base de datos de un conductor
 @app.route('/eliminar/<id>', methods=['DELETE'])
 def delete(id):
+    
     conductor = Conductores.query.get(id)
     db.session.delete(conductor)
     db.session.commit()
     return task_schema.jsonify(conductor)
 
-
+#metodo para levantar el servidor local
 if __name__ == "__main__":
     app.run(debug=True)
