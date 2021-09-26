@@ -4,9 +4,13 @@ from flask.json import jsonify
 #importacion de SQLAlchemy para la conexion a la base de datos 
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_cros import CORS
 
 #iniciamos la aplicacion web
 app = Flask(__name__)
+CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 # Conexion a la base de datos con usuario contraseña servidor y base de datos 
 app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:root@localhost/pruebaits'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
