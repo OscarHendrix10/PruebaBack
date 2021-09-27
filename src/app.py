@@ -12,7 +12,7 @@ CORS(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Conexion a la base de datos con usuario contraseña servidor y base de datos 
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:root@localhost/pruebaits'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://sql5440324:zhMEYD9TWM@sql5.freesqldatabase.com/sql5440324'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 
 #intanciamos una variable de sqlalchemy y marhmellow 
