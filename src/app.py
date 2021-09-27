@@ -12,7 +12,7 @@ CORS(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Conexion a la base de datos con usuario contraseña servidor y base de datos 
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://sql5440324:zhMEYD9TWM@sql5.freesqldatabase.com/sql5440324'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://sql5440351:gWjGTEXzxu@sql5.freesqldatabase.com/sql5440351'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 
 #intanciamos una variable de sqlalchemy y marhmellow 
@@ -47,7 +47,7 @@ class Conductores(db.Model):
         self.ubicacion = ubicacion
         
 #creamos la tabla de conductores 
-db.create_all()
+#db.create_all()
 
 #reacmos un metodo svhema para aginar los parametros que vamos a recibir
 class ConductoresSchema(ma.Schema):
